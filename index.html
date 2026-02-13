@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://powernet.jp/tech/unity/breakout/?utm_source=chatgpt.com -->
+<html lang="ja"><!-- InstanceBegin template="/Templates/main.dwt" codeOutsideHTMLIsLocked="false" --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="keywords" content="東北,秋田,横手,ネットワーク,ドメイン,サーバー,CGI,ホームページ,パワー,ネット,パワーネット,スマホ,スマートフォン,アプリ,システム開発,映像制作,ドローン,講習,WeArePlay">
+	<meta name="description" content="株式会社パワーネットはシステム開発/ホームページ制作/映像制作等、コンピュータとネットワークのワンストップソリューションを目指す企業です">
+	<meta property="og:image" content="../image/logo-powernet.png">
+	<link rel="canonical" href="https://powernet.jp/">
+	<!-- InstanceBeginEditable name="doctitle" -->
+	<title>ブロック崩しでUnity入門 | 株式会社パワーネット(PowerNet)</title>
+	<!-- InstanceEndEditable -->
+
+	<!-- Bootstrap -->
+	<link href="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/bootstrap.min.css" rel="stylesheet">
+	  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/jquery-3.7.1.min.js.ダウンロード"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/popper.min.js.ダウンロード"></script>
+    <script src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/bootstrap.min.js.ダウンロード"></script>
+	  
+	<!--jQuery-->
+	<!--<script type="text/javascript" src="../jquery/jquery.min.js"></script>-->
+
+	<link href="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/default.css" rel="stylesheet" type="text/css">
+
+	<link href="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/bootstrap-icons.min.css" rel="stylesheet" type="text/css">
+
+	<!-- fontawesome -->
+	<link href="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/all.css" rel="stylesheet" type="text/css">
+	<link href="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/buttons.css" rel="stylesheet" type="text/css">
+  
+	<link rel="icon" href="https://powernet.jp/favicon.ico" sizes="any">
+	  
+	<!-- POWERNET Spam Firewall -->
+    <script type="text/javascript" src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/psfw.js.ダウンロード" charset="utf-8"></script>
+	<script type="text/javascript">
+		psfw_count();
+	</script>
+
+	<!-- InstanceBeginEditable name="head" -->
+
+	<!-- Prism -->
+	<link href="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/prism.css" rel="stylesheet">
+	<script src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/prism.js.ダウンロード"></script>
+	  
+	<link href="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/tech.css" rel="stylesheet" type="text/css">
+	  
+	  
+	  <!-- InstanceEndEditable -->
+  </head>
+
+  <body>
+	  
+
+	<!-- header -->
+
+	<div class="container-fruid">
+		<div class="row">
+			<div class="col-md">
+				<!-- InstanceBeginEditable name="header" -->
+				<div class="container-fruid bg-success text-center mes_white">
+					<p class="p-3"></p>
+
+					<div class="container">
+						<div class="row">
+							<div class="col-12 col-md-12 align-self-center">
+								<h1 class="mes_bold m-3">Unity入門 ～ブロック崩しを作ろう～</h1>
+							</div>
+						</div>
+					</div>
+					<p class="p-3"></p>
+				</div>
+				<!-- InstanceEndEditable -->
+			</div>
+		</div>
+	</div>
+
+	<!-- main -->
+	  
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-md">
+				<!-- InstanceBeginEditable name="main" -->
+
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+			<p class="p-1"></p>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+
+						<div class="card">
+							<div class="card-header">目次</div>
+							<div class="card-body">
+								<ol lass="list-group list-group-numbered">
+									<li><a href="#about">ブロック崩しについて</a></li>
+									<li><a href="#install">Unityの準備</a></li>
+									<li><a href="#unityControl">Unityの基本的操作を学ぼう</a></li>
+									<li><a href="#material">マテリアルの作成</a></li>
+									<li><a href="#prefab">プレハブを作ろう</a></li>
+									<li><a href="#ball1">ボールを動かす</a></li>
+									<li><a href="#player1">プレーヤーを動かす</a></li>
+									<li><a href="#block1">ブロックを消す</a></li>
+									<li><a href="#script">Unityのスクリプト「C#」について</a></li>
+									<li><a href="#gameover">ゲームオーバーを実装する</a></li>
+									<li><a href="#gameclear">ゲームクリアを実装する</a></li>
+									<li><a href="#retry">再プレイを実装する</a></li>	
+									<li><a href="#build">ビルドする</a></li>
+									<li><a href="#summary">まとめ</a></li>	
+								</ol>
+							</div>
+						</div>
+	
+					</div>
+				</div>
+			</div>
+				
+				
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+			<a name="about"></a>
+			<p class="p-1"></p>
+
+			<h1 class="contents_title2 mb-3">ブロック崩しについて</h1>
+			<p class="p-1"></p>	
+
+			かつて家庭用テレビゲームの元祖として大ヒットしたブロック崩しですが、Unityを使えばものの1時間程度で作れてしまいます。<br>
+			本解説ではそのブロック崩しをUnity入門者向けに解説して、一緒に作っていきます。<br>
+			プログラム自体は非常に簡単で、順番を追って作っていけば自然にUnityでのプログラミング方法が身につくでしょう。<br>
+			なお、ブロック崩しは英語で「Break Out」と言うらしいです。<br>
+			全くブロックも崩すも入っていませんが、あちらではとある理由でその名前になったそうです。<br>
+			興味のある方は調べて見てください。<br>
+			<br>
+
+			<h5>制作例</h5>
+			こちらは本解説のプログラムを少し発展させたものです。<br>
+			このようなゲームを作っていきます。<br>
+			<br>
+
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12">
+						<video controls="" autoplay="" muted="" loop="" width="100%"><source src="image/movie-breakout-complete.mp4"></video>
+					</div>
+				</div>
+			</div>
+
+			<br>
+
+
+
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="install"></a>
+			<p class="p-1"></p>
+
+			<h1 class="contents_title2 mb-3">Unityの準備</h1>
+			<p class="p-1"></p>	
+
+			本説明で使うエディタはUnity 6 (執筆時点で6000.0.17f1)です。<br>
+			Unityのインストール、アカウントの作成、Visual Studioのインストールなどは他の文献を参考にしてください。<br>
+			Unityは日本語化も可能ですが、本解説では英語版を使用します。<br>
+			メッセージまで全て英語になってしまうので敷居が高く感じられるかもしれませんが、実際にプログラミングの現場では英語版を使うことが多いことと、日本語訳が中途半端な部分が多いためです。<br>
+			もし英語が分からなくなったらUnityの環境設定で日本語にすぐ切り替えられますのでご安心ください。<br>
+
+
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="project"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">プロジェクトの作成</h1>
+
+			<p class="p-1"></p>
+			<h5>新規プロジェクトを作成する</h5>
+
+			Unity Hubを起動し、「新しいプロジェクト」ボタンをクリックしてプロジェクトを作成します。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/unity-hub-create_new_project.jpg" width="100%" alt="Unity Hub">
+					</div>
+				</div>
+			</div>
+			<br>
+			プロジェクトのテンプレートを2Dとして作成します。<br>
+			エディタが複数インストールされている場合はバージョンチェックを忘れないでください。<br>
+			プロジェクト名や保存場所は、トラブルを避けるために全角文字（日本語）の不使用をお勧めします。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/unity-hub-create_breakout.jpg" width="100%" alt="Unity Hub 新しいプロジェクト">
+					</div>
+				</div>
+			</div>
+<br>
+
+			<h5>シーンを保存する</h5>
+			ヒエラルキーウインドウの「SampleScene」となっている部分の右側の「・・・」を縦にしたアイコンをクリックし、「Save As...」を選択します。<br>
+			今回は「MainScene」という名前にして保存しましょう。<br>
+			「Assets」フォルダの中に「Scenes」があるので、そのフォルダに入ってから保存します。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-4">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/scene-rename.jpg" width="100%" alt="シーンの名称変更">
+					</div>
+					<div class="col-12 col-md-8">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/scene-save.jpg" width="100%" alt="シーンの保存">
+					</div>
+				</div>
+			</div>
+			<br>
+
+
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="unityControl"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">unityの基本的操作を学ぼう</h1>
+
+			<p class="p-1"></p>
+
+			ここではゲーム作る上で最も基本的な単位であるゲームオブジェクトの作成や、それにくっついているコンポーネントという物の設定方法を学んでいきます。
+			これでだいぶ操作方法のイメージが出来るようになるはずです。<br>
+			<br>
+			<h5>カメラの設定を行なう</h5>
+
+			初期状態では表示範囲が狭いので、カメラの表示範囲を調整します。<br>
+			インスペクタウインドウにあるTransformのPositionの値をX=0,Y=0,Z=-20（以降、「(0, 0, -20)」のように表現します）に設定してカメラを位置を変更します。<br>
+			そして、表示範囲を広くするために、CameraのProjection▶Sizeの値を12にします。<br>
+			<br>
+			背景の色は初期状態で青になっています。CameraコンポーネントのBackgroundで変更できます。<br>
+			今回は黒にしましょう。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/unity-screen-main_camera_all.jpg" width="100%" alt="メインカメラ">
+					</div>
+				</div>
+			</div>	
+
+			<h5>壁を作成する</h5>			
+
+			ボールが外に飛んでいかないように、壁を作成します。<br><br>
+			ヒエラルキーウインドウでマウスを右クリックし、3D Object▶Cubeを選択して作成します。<br>
+			Cubeを4つ作成して大きさと位置を変えて上下左右の壁を作りましょう。<br>
+			サイズとポジションは以下の表の通りです。<br>
+			<br>
+			<table class="table table-sm table-bordered text-center" border="0">
+				<thead>
+					<tr>
+						<th rowspan="2">オブジェクト<br>名称</th><th colspan="3">位置(Position)</th><th colspan="3">サイズ(Scale)</th>
+					</tr>
+					<tr>
+						<th>X</th><th>Y</th><th>Z</th><th>X</th><th>Y</th><th>Z</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Wall Left</td><td>-7</td><td>0</td><td>0</td><td>1</td><td>20</td><td>1</td>
+					</tr>
+					<tr>
+						<td>Wall Right</td><td>7</td><td>0</td><td>0</td><td>1</td><td>20</td><td>1</td>
+					</tr>
+					<tr>
+						<td>Wall Top</td><td>0</td><td>10.5</td><td>0</td><td>15</td><td>1</td><td>1</td>
+					</tr>
+					<tr>
+						<td>Wall Bottom</td><td>0</td><td>-10.5</td><td>0</td><td>15</td><td>1</td><td>1</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/wall-create.jpg" width="100%" alt="壁作成">
+					</div>
+				</div>
+			</div>
+			<br>
+
+			<h5>ボールを作成する</h5>			
+			壁と同様にヒエラルキーウインドウでマウスを右クリックし、3D Object▶Sphereを選択して作成します。<br>
+			名前を「Ball」にします。<br>
+			Positionは(0, 0, 0)、Scaleは(0.5, 0.5, 0.5)にします。<br>
+<br>
+
+			<h5>プレーヤー（バー）を作成する</h5>			
+			3D Object▶Cubeを選択して作成します。<br>
+			名前を「Player」にします。<br>
+			Positionは(0, -8, 0)、Scaleは(2, 0.5, 1)にします。<br>
+<br>
+
+			<h5>ブロックを作成する</h5>			
+			3D Object▶Cubeを選択して作成します。<br>
+			名前を「Block」にします。<br>
+			Positionは(-5, 3, 0)、Scaleは(2, 0.8, 1)にします。<br>			
+			ブロックは複数必要ですので、とりあえずもう2つ作りましょう。<br>
+			今作ったブロックをマウスで選択状態にして、CTRL+Dで複製できます。複製したら位置を変更してください。<br>
+			【2個目】名前: Block (1)、Position: (-2.5, 3, 0)、Scale: (2, 0.8, 1)<br>
+			【3個目】名前: Block (2)、Position: (0, 3, 0)、Scale: (2, 0.8, 1)<br>
+			本当はブロックはもっと必要ですね。なぜ3つしか作らなかったかは後ほど説明します。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/object-create-all.jpg" width="100%" alt="オブジェクト作成完了">
+					</div>
+				</div>
+			</div>	
+
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="material"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">マテリアルの作成</h1>			
+
+			<p class="p-1"></p>
+
+			<h5>マテリアルとは？</h5>
+			3dモデルの色や画像の色を指定する物です。今のゲームでは 全てのゲームオブジェクトの色がグレーとなっていて味気ないです。<br>
+			これはデフォルトで適用されているマテリアルの色がグレーだからです。<br>
+			よって、unityの世界に色どりをつけるために、マテリアルを作成します。<br>
+			
+			<h5>マテリアル用のフォルダを作る</h5>
+			今回の場合は、壁、ボール、ブロックの3種類のオブジェクトがあります。<br>
+			これらを区別するためにそれぞれに色を付けましょう。<br>
+			マテリアルが3つ必要になるので、それらをまとめて管理できるフォルダを作成します。<br>
+			プロジェクトウインドウの上で右クリックして、Create▶Folderを選択して作成します。<br>
+			フォルダの名前は「Materials」にしましょう。<br>
+			作成したらダブルクリックして中に入ってください。<br>				
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/material-folder-create.jpg" width="100%" alt="マテリアルフォルダ作成">
+					</div>
+				</div>
+			</div>		
+			<br>
+			ここにマテリアルを作っていきます。<br>
+			<br>
+
+			<h5>壁用のマテリアルを作る</h5>		
+			まずは壁用のマテリアルを作ってみましょう。<br>
+			プロジェクトウインドウで、Create▶Materialを選択して作成します。<br>
+			名前は「Wall」にしましょう。<br>
+			アイコンをクリックして選択状態にしてください。<br>
+			Shaderを「Unlit/Color」に変更します。<br>
+			shaderは簡単に言うとあるマテリアルが3dや画像をどのような方法で描画するかを指定するコードが書かれたものです。<br>
+			難しいのでここでは深ぼりません。<br>
+			次にMain Colorを好きな色に変更します。<br>
+			例では茶色にしてみました。<br>
+			その後、マテリアル「Wall」を壁のオブジェクト「Wall Left」にドラッグ＆ドロップします。<br>
+			色が変わったのが確認できたでしょうか。<br>
+			同じように上下と右の壁にもドラッグ＆ドロップして色を付けていきましょう。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/material-wall-dd.jpg" width="100%" alt="壁のマテリアルを作成">
+					</div>
+				</div>
+			</div>		
+			<br>			
+			
+			<h5>ボール用のマテリアルを作る</h5>		
+			壁と同様に、Create▶Materialを選択して作成します。<br>
+			名前は「Ball」にしましょう。<br>
+			壁と同様に、Shaderを「Unlit/Color」に変更して、Main Colorも変えましょう。<br>
+			例では白にしてみました。<br>
+			そしてマテリアル「Ball」をゲームオブジェクト「Ball」にドラッグ＆ドロップします。<br>
+			<br>
+
+			<h5>プレーヤー用のマテリアルを作る</h5>		
+			名前は「Player」にしましょう。<br>
+			例では緑にしてみました。<br>
+			前述と同様にプレーヤーに適用します。<br>
+<br>
+			
+			<h5>ブロック用のマテリアルを作る</h5>		
+			名前は「Block」にしましょう。<br>
+			例では青にしてみました。<br>
+			前述と同様にブロック全てに適用します。<br>
+			
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/material-create-all.jpg" width="100%" alt="マテリアルを全て作成">
+					</div>
+				</div>
+			</div>		
+			<br>	
+			
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="prefab"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">プレハブを作ろう</h1>			
+
+			<p class="p-1"></p>
+
+			<h5>プレハブのメリット</h5>	
+			さて、先ほどブロックを3つ作って、マテリアルをそれぞれにドラッグ＆ドロップしました。<br>
+			3つだったからさほど苦労はしませんが、このゲームには横5個×縦4列＝20個ぐらい必要です。<br>
+			しかもこれからコンポーネントと呼ばれるものや、スクリプトと呼ばれるものを適用していきます。<br>
+			そう考えると、全てにそれを行なうのは大変な作業でしょう。<br>
+			ブロックはそれぞれが独立はしていますが、形や色などの内容は同じで、位置が変わっているだけですね。<br>
+			機能が同じなら、同じように扱おうじゃないかというのがプレハブの思想です。<br>
+			プレハブはPrefabと書きます。あの家の建築で良く聞くプレハブと同じです。<br>
+			プレハブはシーンにあるゲームオブジェクトから生成できます。<br>
+			プレハブを作ると、そこからコピーを大量に作成できます。そして、プレハブに対してマテリアル等を適用すれば、<br>
+			その全てのコピーにも同じ変化が適用されます。<br>
+			作業効率がアップし、さらにバグなどが出にくくなりますので、同じものを作る場合はプレハブを作りましょう。<br>
+<br>
+
+			<h5>ブロックのプレハブを作る</h5>			
+			
+			プロジェクトウインドウに「Prefabs」というフォルダを作ります。<br>
+			そのフォルダに、ヒエラルキーウインドウからオブジェクト「Block」をドラッグ＆ドロップします。<br>
+			すると、「Block」というプレハブが生成されます。<br>
+			今後はこちらにマテリアルなどを適用していきます。<br>
+			一度プレハブを生成すると、プレハブからコピーしてオブジェクトを生成できるようになりますので、元になっていたゲームオブジェクトは削除しても大丈夫です。<br>
+			ではオブジェクト「Block」「Block (1)」「Block (2)」は削除してしまいましょう。<br>
+<br>
+
+			<h5>空のゲームオブジェクトを作ってブロックをまとめよう</h5>	
+			Blockの数が大量に増えてインスペクターが見づらくなる事が予想できます。そんな時は空のゲームオブジェクトを使ってまとめます。
+			ヒエラルキーウインドウで右クリックし、「Create Empty」を選択して、空のゲームオブジェクトを生成し、名前を「Blocks」にします。<br>
+			ここにブロックを大量に生成していきます。<br>
+			オブジェクト「Blocks」に、プロジェクトウインドウのプレハブ「Block」をドラッグ＆ドロップしてみてください。<br>
+			1つブロックが生成されます。<br>
+			同様に、どんどん追加していってみてください。<br>
+			同じ位置に表示されてしまうので追加されていないように見えるかもしれませんが、「Block (1)」のように数字が入ったものが追加されます。<br>
+			そのオブジェクトに対して、最初のブロック作成でやったように位置を変更してください。<br>
+			全部で10個作ってみましょう。「Block (9)」まで生成します。<br>
+			この表で伝わりますか？■はブロックだと思ってください。<br>
+			<br>
+			<table class="table table-sm table-bordered text-center" border="0">
+				<tbody>
+					<tr>
+						<td>Position</td><td>X=-5</td><td>X=-2.5</td><td>X=0</td><td>X=2.5</td><td>X=5</td>
+					</tr>
+
+					<tr>
+						<td>Y=4.5</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td>
+					</tr>
+					<tr>
+						<td>Y=3</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td>
+					</tr>
+				</tbody>
+			</table>
+
+			なお、オブジェクト「Blocks」のPositionも重要です。初期状態では(0, 0, -20)になっているかもしれません。Z軸が0でないといけないので、(0, 0, 0)にしてください。<br>
+			Z軸が0以外だと画面からブロックが消えたり、ボールが当たらなくなります。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/prefab-block-dd.jpg" width="100%" alt="ブロックのプレハブ">
+					</div>
+				</div>
+			</div>		
+			<br>				
+			
+			
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="ball1"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">ボールを動かす</h1>					
+
+			<p class="p-1"></p>
+			
+			さて、ここまででやっと外観が完成しました。<br>
+			これから先はゲームとして作り込んでいきます。<br>
+			まずはボールを動かす方法です。<br>
+<br>
+			
+			<h5>ボールを動かすには？</h5>		
+			
+			ボールを動かすには主に2つの方法があります。<br>
+			一つ目は座標をつかさどるtransformを直接いじって動かす方法、二つ目がUnityの大きな特徴である物理演算を用いて動かす方法です。<br>
+			具体的には重力や壁の当たり判定を考慮した移動が実現できます。今回はボール、つまり、跳ね返ってほしいので、二つ目の方法を採用します。<br>
+			そのためには、物理演算をつかさどる「Rigidbody」コンポートネントと、物理演算のマテリアルである「Physics Material」を使って動かしてみましょう。<br>
+<br>
+			
+			<h5>物理演算コンポーネントを追加する</h5>				
+			
+			ヒエラルキーウインドウのオブジェクト「Ball」を選択し、インスペクタウインドウの一番下にある「Add Component」をクリックします。<br>
+			その中から、Physics▶Rigidbodyを選択してください。<br>
+			数値は下記のようにしてください。<br>
+			<br>
+			<table class="table table-sm table-bordered text-left" border="0">
+				<thead>
+					<tr>
+						<th>項目</th><th>内容</th><th>説明</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<th nowrap="">Mass</th><td>1</td><td>質量。オブジェクト同士の衝突時、Massの高い方が低いオブジェクトを押す。<br>ボールはまず1としておく。</td>
+					</tr>
+					<tr>
+						<th nowrap="">Drag</th><td>0</td><td>抗力。高くなるほど減速する。<br>ボールは減速してほしくないので0。</td>
+					</tr>
+					<tr>
+						<th nowrap="">Angular Drag</th><td>0</td><td>回転抗力。高くなるほど減速する。<br>ボールは減速してほしくないので0。</td>
+					</tr>					
+					<tr>
+						<th nowrap="">Use Gravity</th><td>チェック無し</td><td>重力を使う場合はチェック。<br>ボールに重力は不要。</td>
+					</tr>					
+					<tr>
+						<th nowrap="">Constraints▶Freeze Position</th><td>X,Yは無し、Zにチェック</td><td>位置を固定する場合にチェック。<br>ボールはZ軸に飛んでほしくないのでZは固定。</td>
+					</tr>					
+					<tr>
+						<th nowrap="">Constraints▶Freeze Rotation</th><td>X,Y,Z全てにチェック</td><td>回転を固定する場合にチェック。<br>ボールは回転してほしくないので全固定。</td>
+					</tr>
+					
+				</tbody>
+			</table>	
+			
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/ball-rigidbody.jpg" width="100%" alt="ボールのRigidbody">
+					</div>
+				</div>
+			</div>		
+			<br>			
+			
+			
+			<h5>物理演算のマテリアルを追加する</h5>
+			ボールにはもう1つ必要な動作があります。<br>
+			壁、ブロック、プレーヤーと衝突したときの動作です。<br>
+			物理演算のマテリアル「Physics Material」は、他の物体と衝突したときにどのくらい摩擦が生じるか（摩擦係数）、どのくらいの強さで跳ね返るのか（反発係数）を指定するものです。<br>
+			プロジェクトウインドウの上で右クリックして、Create▶Physics Materialを選択してください。名前は「Ball Physics Material」にしましょう。<br>
+			数値は下記のようにしてください。<br>
+			<br>
+			<table class="table table-sm table-bordered text-left align-middle" border="0">
+				<thead>
+					<tr>
+						<th>項目</th><th>内容</th><th>説明</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<th nowrap="">Dynamic Friction</th><td>0</td><td>動的摩擦。数値は0～1。移動しているオブジェクト（衝突後のボール）に発生する摩擦。0の場合、摩擦はなくつるつる滑る。１の場合は強い摩擦力が発生しオブジェクトはすぐに停止する。<br>ボールは摩擦不要なので0。</td>
+					</tr>
+					<tr>
+						<th nowrap="">Static Friction</th><td>0</td><td>静的摩擦。数値は0～1。静止しているオブジェクト（衝突の瞬間）に発生する摩擦。０の場合、摩擦はなくつるつる滑る。１の場合は強い力が作用しない限りオブジェクトは静止したまま。<br>ボールは摩擦不要なので0。</td>
+					</tr>
+					<tr>
+						<th nowrap="">Bounciness</th><td>1</td><td>弾性力。数値は0～1。0の場合全く弾まない。1は物理法則を無視してすごく弾む。<br>ボールは弾性力が落ちると困るので1。</td>
+					</tr>					
+					<tr>
+						<th nowrap="">Friction Combine</th><td>Minimum</td><td>衝突するオブジェクト間の摩擦度合いの処理方法。種類は後述（Bounce Combineと同様）。</td>
+					</tr>					
+					<tr>
+						<th nowrap="">Bounce Combine</th><td>Maximum</td><td>衝突するオブジェクト間の摩擦度合いの処理方法。種類は後述（Friction Combineと同様）。</td>
+					</tr>					
+			
+				</tbody>
+			</table>	
+
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/ball-physics-material.jpg" width="100%" alt="ボールのPhysics Material">
+					</div>
+				</div>
+			</div>		
+			<br>					
+			
+			<br>	
+			<table class="table table-sm table-bordered text-left align-middle" border="0">
+				<thead>
+					<tr>
+						<th>項目</th><th>説明</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<th nowrap="">Average</th><td>2つの摩擦力を平均化して反映</td>
+					</tr>
+					<tr>
+						<th nowrap="">Minimum</th><td>2つの摩擦力の小さい方を優先して反映</td>
+					</tr>
+					<tr>
+						<th nowrap="">Maximum</th><td>2つの摩擦力の大きい方を優先して反映</td>
+					</tr>					
+					<tr>
+						<th nowrap="">Multiply</th><td>2つの摩擦力を乗算した値を反映</td>
+					</tr>					
+
+				</tbody>
+			</table>	
+			<br>
+			完成したマテリアルをヒエラルキーウインドウのオブジェクト「Ball」にドラッグ＆ドロップしましょう。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/ball-physics-material-dd.jpg" width="100%" alt="ボールのPhysics Materialを適用">
+					</div>
+				</div>
+			</div>		
+			<br>		
+			
+			<h5>スクリプトでボールを動かす</h5>
+			さて、これだけではボールは動きません。なぜなら、ボールに速度も与えられていませんし、飛び出す角度も与えられていないからです。<br>
+			これを与えるために、スクリプトを作成します。ここで初めてプログラミングをすることになります。<br>
+			スクリプトの詳細については後ほど集中的に解説します。<br>
+			ここでは軽く説明します。<br>
+			では、Assetsにスクリプト用のフォルダを作成しましょう。<br>
+			プロジェクトウインドウの上で右クリックし、Create▶Folderを選択してフォルダを作ってください。名前は「Scripts」にしましょう。<br>
+			Scriptsフォルダをダブルクリックして中に移動し、そこでCreate▶Scripting▶Empty C# Scriptを選択します。名前は「Ball」にしてください。<br>
+			そして、スクリプト「Ball」をオブジェクト「Ball」にアタッチします。<br>
+			今までドラッグ＆ドロップすると記述してきましたが、Unity的には「アタッチ」といいます。<br>
+
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/ball-script-attach.jpg" width="100%" alt="ボールスクリプトのアタッチ">
+					</div>
+				</div>
+			</div>		
+			<br>			
+
+			スクリプト「Ball」をダブルクリックするとVisual Studioが立ち上がって、スクリプトを編集できるようになります。<br>
+			スクリプトを次のようにしてください。<br>
+			コピー＆ペーストして貼り付けると楽です。<br>
+			<br>
+			
+<div class="code-toolbar"><pre data-label="Ball" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Ball</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+
+	<span class="token comment">// ボールの速度をpublicにしてインスペクターウインドウで変えられるようにしておく</span>
+	<span class="token comment">// 初速は5.0fとする</span>
+	<span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">float</span></span> speed <span class="token operator">=</span> <span class="token number">5.0f</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Rigidbodyにアクセスして変数に保持しておく</span>
+	<span class="token class-name">Rigidbody</span> myRigidbody<span class="token punctuation">;</span>
+	<span class="token comment">//ゲーム開始時、unity側により自動で呼ばれるイベント関数</span>
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// Rigidbodyコンポーネントを取得する</span>
+		myRigidbody <span class="token operator">=</span> <span class="token generic-method"><span class="token function">GetComponent</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Rigidbody<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token comment">// 右上45度に進む</span>
+		myRigidbody<span class="token punctuation">.</span>linearVelocity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Vector3</span><span class="token punctuation">(</span>speed<span class="token punctuation">,</span> speed<span class="token punctuation">,</span> <span class="token number">0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>Ball</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+
+			<br>
+			少し解説すると、StartメソッドでRigidbodyコンポーネントにアクセスし、速度velocityを設定することでボールを動かします。<br>
+			X成分、Y成分を同じにしているため、動き出しは右上に45度で進むことになります。<br>
+			移動の速さはインスペクターウインドウで調整できるように「public」にしています。<br>
+			このように、スクリプトに初期値を書いておきながら、UnityのUI画面で変えることができるのもUnityの特徴です。<br>
+			この辺の詳しい説明も後述しますので、今は覚えなくて大丈夫です。<br>
+			<br>
+			編集し終わったら保存して、Unityに戻ってきてください。<br>
+			なお、アタッチする前にスクリプトを編集してしまった場合、次のような警告画面が出てくるかもしれません。<br>
+			その場合は最初の選択肢をクリックしてください。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/script-warning.jpg" width="100%" alt="スクリプトの警告">
+					</div>
+				</div>
+			</div>		
+			<br>		
+			
+			<h5>実行してみる</h5>		
+			
+			では実際にどのような動きになるか、実行してみましょう。<br>
+			画面上部にある実行ツールの実行ボタン「▶」を押してください。<br>
+			ボールがまず右上に動いて、壁、ブロック、プレーヤーにあたると跳ね返るのが分かると思います。<br>
+			ずっと続いてしまうので、適当なところでストップボタン「■」を押して止めてください。<br>
+			なお、実行した瞬間に壁、ブロック、プレーヤー、ボールのどれかが消えてしまう場合、positionのZ値が0以外になっている可能性があります。その場合は0に修正して下さい。<br>
+
+			
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="player1"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">プレーヤーを動かす</h1>					
+
+			<p class="p-1"></p>
+			
+			さて、ボールも動いたことですし、次はプレーヤーを動かしてみましょう。<br>
+			キーボードの左右の矢印キーを押したら左右に動くようにしましょう。<br>
+			
+			<h5>プレーヤー用スクリプトを作成してアタッチする</h5>			
+			プレーヤーを動かす方法はボールの時と同じく、transformの位置を直接変える方法と、Rigidbodyを介して動かす方法の二種類があります。<br>
+			ボールとは異なり、前者の方が比較的簡単なので、今回は前者を採用します。<br>
+			プロジェクトウインドウのScriptsフォルダをダブルクリックして中に移動し、そこでCreate▶Scripting▶Empty C# Scriptを選択します。名前は「Player」にしてください。<br>
+			そして、スクリプト「Player」をオブジェクト「Player」にアタッチします。<br>
+
+			コードは次のようになります<br>
+			
+<div class="code-toolbar"><pre data-label="Player" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Player</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+	<span class="token comment">// プレーヤーの移動の速さ</span>
+	<span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">float</span></span> speed <span class="token operator">=</span> <span class="token number">0.2f</span><span class="token punctuation">;</span>
+	<span class="token comment">//ゲーム開始時、unity側により自動で呼ばれるイベント関数</span>
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token comment">// フレームレートを60に設定</span>
+		Application<span class="token punctuation">.</span>targetFrameRate <span class="token operator">=</span> <span class="token number">60</span><span class="token punctuation">;</span>
+
+	<span class="token punctuation">}</span>
+	<span class="token comment">//毎フレーム、unity側により自動で呼ばれるイベント関数</span>
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>Input<span class="token punctuation">.</span><span class="token function">GetKey</span><span class="token punctuation">(</span>KeyCode<span class="token punctuation">.</span>LeftArrow<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>transform<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span>
+			<span class="token punctuation">{</span>
+				transform<span class="token punctuation">.</span><span class="token function">Translate</span><span class="token punctuation">(</span><span class="token operator">-</span>speed<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+
+		<span class="token punctuation">}</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>Input<span class="token punctuation">.</span><span class="token function">GetKey</span><span class="token punctuation">(</span>KeyCode<span class="token punctuation">.</span>RightArrow<span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+			<span class="token keyword">if</span> <span class="token punctuation">(</span>transform<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span>
+			<span class="token punctuation">{</span>
+				transform<span class="token punctuation">.</span><span class="token function">Translate</span><span class="token punctuation">(</span>speed<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>Player</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+
+		
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="block1"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">ブロックを消す</h1>					
+
+			<p class="p-1"></p>
+			
+			さて、ボールも動いてプレーヤーも動きました。次はボールがブロックに当たったらブロックを消すようにしましょう。<br>
+			<br>
+
+			<h5>ブロックを消すスクリプトをアタッチする</h5>				
+			Scriptsフォルダの中でC# Scriptを作ります（もう手順はお分かりですよね？）。名前は「Block」にしてください。<br>
+			そして、スクリプト「Block」をオブジェクト「Blocks」にアタッチします。<br>
+			ブロックがいっぱいありますが、それらをとりまとめている「Blocks」だけにアタッチするので気をつけてください。<br>
+			コードは次のようになります<br>
+			
+<div class="code-toolbar"><pre data-label="Block" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Block</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+	<span class="token comment">// 何かとぶつかった時に呼ばれるイベント関数</span>
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnCollisionEnter</span><span class="token punctuation">(</span><span class="token class-name">Collision</span> collision<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+		<span class="token comment">// ゲームオブジェクトを削除するメソッド</span>
+		<span class="token function">Destroy</span><span class="token punctuation">(</span>gameObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>Block</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<br>
+			<h5>実行してみる</h5>		
+			
+			では実際にどのような動きになるか、実行してみましょう。<br>
+			実行ボタン「▶」を押してください。<br>
+			ボールがブロックに当たるとブロックが消えるのが分かると思います。<br>
+			ブロックが全部消えても続いてしまうので、適当なところでストップボタン「■」を押して止めてください。<br>
+		
+		
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="script"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">Unityのスクリプト「C#」について</h1>					
+
+			<p class="p-1"></p>
+
+			スクリプトにも少し慣れたところなので、そろそろスクリプトの解説をします。<br>
+<br>
+			
+			<h5>Unityのプログラミング言語「C#」とは？</h5>	
+
+			C系言語の1つでオブジェクト指向のプログラミング言語です。<br>
+			C言語とJavaの良いところを取り入れた言語ですが、よりJavaに寄せたものとなっています。<br>
+			C#はマイクロソフトが開発していて、IDEはVisual Studioを利用することができます。<br>
+			詳しい説明は他の文献をご覧ください。<br>
+			本解説では、Unityで使うスクリプトについて解説します。<br>
+<br>
+			
+			<h5>Unity独自の使い方</h5>			
+
+			Unityではゲームオブジェクト、コンポーネント、マテリアルなど、いろいろ組み合わせて使います。<br>
+			それを表現するために、独自の使用法があります。<br>
+			ボールを動かすときに使用したスクリプトを解説していきます。<br>
+			<br>
+			
+<div class="code-toolbar"><pre data-label="Ball" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Ball</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+
+	<span class="token comment">// ボールの速度をpublicにしてインスペクターウインドウで変えられるようにしておく</span>
+	<span class="token comment">// 初速は5.0fとする</span>
+	<span class="token keyword">public</span> <span class="token class-name"><span class="token keyword">float</span></span> speed <span class="token operator">=</span> <span class="token number">5.0f</span><span class="token punctuation">;</span>
+
+	<span class="token comment">// Rigidbodyにアクセスして変数に保持しておく</span>
+	<span class="token class-name">Rigidbody</span> myRigidbody<span class="token punctuation">;</span>
+
+    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+
+        <span class="token comment">// Rigidbodyコンポーネントを取得する</span>
+        myRigidbody <span class="token operator">=</span> <span class="token generic-method"><span class="token function">GetComponent</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>Rigidbody<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 右上45度に進む</span>
+        myRigidbody<span class="token punctuation">.</span>linearVelocity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Vector3</span><span class="token punctuation">(</span>speed<span class="token punctuation">,</span> speed<span class="token punctuation">,</span> <span class="token number">0f</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>Ball</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+			<br>
+
+<pre><h6 class="prog">Using UnityEngine;</h6></pre>
+			Unityではほぼ全てのスクリプトに付くおまじないのような行です。<br>
+			UnityEngineというカタログを使うという意味の行です。<br><br>
+
+<pre><h6 class="prog">class Ball : MonoBehaviour {}</h6></pre>
+			Ballというクラスにしますという宣言です。MonoBehaviourはクラスの継承を意味する指定ですが、特に覚えなくて大丈夫です。<br>
+			クラスはC#でよく使われます。<br>
+			Unityではクラス名とファイル名を同じにするのがルールで、クラスは1ファイルにつき1つしか宣言できません。<br>
+<br>
+<pre><h6 class="prog">// ボールの速度を・・・</h6></pre>	
+			「//」で始まる行はコメントと言います。<br>
+			プログラム中でメモ書きのように使います。<br>
+			コメントを多く残しておくと、後でプログラムを見直したときに分かりやすくなり、さらに他人にプログラムを修正してもらう場合にも非常に便利ですので、できるだけ丁寧に書いておきましょう。<br>
+			<br>
+			
+<pre><h6 class="prog">public float speed = 5.0f;</h6></pre>
+			これは「speedという浮動小数点型の変数を作って、各クラスで参照可能にし、初期値として5.0fという数値を入れます」という行です。
+			publicはアクセス修飾子の中の一部で、これを付けると他のクラスからこの変数を参照できるようになります。<br>
+			UnityではUI側でspeed変数の値を変更できるようになります。<br>
+			floatは浮動小数点型の宣言です。C#には他にint（整数型）、string(文字列型)、double（倍精度浮動小数点型）等があります。<br>
+			Unityでは小数を多く使いますので、floatは目にする機会が多いかと思います。<br>
+			floatでは整数と区別するために数値の最後に「f」を付けます。<br>
+			5.0fは整数の5と値は同じですが、処理の仕方に違いがあるので、floatの場合は最後にfを付けると覚えて置いてください。<br>
+			なお、publicと相対する「private」というのもあって、これを付けると他からは参照できなくなります。<br>		
+			使い分けると便利です。<br><br>
+
+<pre><h6 class="prog">void Start() {}</h6></pre>
+			実行開始時に一度だけ呼ばれるメソッドです。<br>
+			メソッドは関数と呼ばれたりもします。定義は似たようなものなので、どちらを使っても通じます。<br>
+			初期値を入れたり、何度も呼ばなくていいような処理を書いたりする場所です。<br>
+			なお、これとは別に「Update() {}」というメソッドもあり、そちらは更新されるたびに呼ばれる部分です。後ほど説明します。<br><br>
+
+		
+<pre><h6 class="prog">myRigidbody = GetComponent&lt;Rigidbody&gt;();</h6></pre>		
+			
+			「Rigidbodyコンポーネントの値をmyRigidbody変数で使います」という宣言です。<br>
+			これをしておくことで、BallオブジェクトのRigidbodyの値を参照したり変更したりできるようになります。<br>
+			<br>
+<pre><h6 class="prog">myRigidbody.velocity = new Vector3(speed, speed, 0f);</h6></pre>		
+			3次元の値は「Vector3(Xの値, Yの値, Zの値)」という表現の仕方をします。<br>
+			「new Vector3(speed, speed, 0f);」は、「X=speed、Y=speed、Z=0fの3次元の値を新しく作ります」という意味です。<br>
+			時々「new」を忘れてしまいそうになりますが、これは必須ですので気をつけてください。<br>
+			「myRigidbody.velocity = ・・・」は、先ほど宣言したRigidbodyの速度ベクトルを変更しますという意味です。<br>
+			これでボールの方向と速度を変更できます。<br>
+			<br>
+
+			次にPlayerクラスの解説です。<br>
+			<br>
+
+<pre><h6 class="prog">Application.targetFrameRate = 60;</h6></pre>	
+			フレームレートを60に設定します。<br>
+			これを宣言しないと、実行する端末によって大きな差が出てしまいます。<br>
+			詳しくは割愛しますが、テレビのフレームレートが60fpsなので60が最適のようです。<br>
+			なお、こちらはStartメソッドの中にあるので、アプリを実行した時に実行されます。<br>
+			アプリ全体に影響しますので、Playerクラスにある必要もなく、実はどのクラスのStartメソッドの中にあっても大丈夫です。<br>
+			<br>
+
+<pre><h6 class="prog">if (Input.GetKey(KeyCode.LeftArrow))
+{
+	if (transform.position.x &gt; -5)
+	{
+		transform.Translate(-speed, 0, 0);
+	}
+
+}</h6></pre>				
+			
+			「if ・・・ {}」は条件文で、多くのプログラム言語が採用しているので説明の必要はないでしょう。<br>
+			「if (Input.GetKey(KeyCode.LeftArrow))」というのは、「もしキーボードの"←"キーが押されているなら」の意味です。<br>
+			「if (transform.position.x &gt; -5)」は「今のX座標が-5より大きかったら」の意味で、その場合に「transform.Translate(-speed, 0, 0);」が実行されます。<br>
+			「transform.Translate(-speed, 0, 0);」は、「speed変数の値分だけX座標をマイナスにする」という意味です。<br>
+			つまり、「"←"キーが押されていて、さらに今のX座標が-5より大きかったら、speed変数の値分だけX座標をマイナスにする」となります。<br>
+			これはプレーヤーが左に動く動作を記述しているものです。<br>
+			speedは初期値では0.2fなので、もし現在のX座標が3.0fだった場合、"←"が押されていた場合は2.8fになります。<br>
+
+			<br>
+<pre><h6 class="prog">if (Input.GetKey(KeyCode.RightArrow))
+{
+	if (transform.position.x &lt; 5)
+	{
+		transform.Translate(speed, 0, 0);
+	}
+}</h6></pre>	
+			
+			同様に上記の行は右への動作を記述しています。<br>
+			こちらは「"→"キーが押されていて、さらに今のX座標が5より小さかったら、speed変数の値分だけX座標をプラスにする」となります。<br>
+			ちなみに、もっと簡単に下記のように記述することも可能です。<br>
+			<br>
+
+<pre><h6 class="prog">if (Input.GetKey(KeyCode.RightArrow) &amp;&amp; (transform.position.x &lt; 5))
+{
+	transform.Translate(speed, 0, 0);
+}</h6></pre>	
+			もっと完結に、こちらも可能です。<br>
+			「{}」は1行だけの場合は不要です。<br>
+			<br>
+
+<pre><h6 class="prog">if (Input.GetKey(KeyCode.RightArrow) &amp;&amp; (transform.position.x &lt; 5)) transform.Translate(speed, 0, 0);</h6></pre>			
+			
+			この辺がPythonと違って自由度のある記述ができるC#の特徴です。<br>
+			<br>
+			最後にブロックを消す部分の説明です。<br>
+			<br>
+
+<pre><h6 class="prog">void OnCollisionEnter(Collision collision)
+{
+	Destroy(gameObject);
+}</h6></pre>	
+			「void OnCollisionEnter(Collision collision)」のOnCollisionEnterメソッドは、衝突したときに呼ばれます。<br>
+			「ブロックが何かと衝突した場合」となります。<br>
+			今回は衝突してくるのはボールしかありえないので、「ボールが衝突したら」となります。<br>
+			<br>
+			「(Collision collision)」は「Collision」が型名、「collision」は変数名です。変数名が型名を小文字にしただけでややこしいですが、別に「coli」とか「hoge」とかでも構いません。この変数をメソッド内で使う場合があるので、そのために指定しているものです。今回は使っていません。<br>
+			<br>
+			ちなみに先頭の「void」というのは、「このメソッドは何も値を返しませんよ」という意味です。<br>
+			メソッドによっては値を返すものがあるので、その場合は「int」とか「string」などの型になります。<br>
+			<br>
+			「Destroy(gameObject);」は、「ゲームオブジェクトgameObjectを削除する」の意味で、この場合は「ブロック（自分自身）を削除する」となります。<br>
+			「gameObject」は定義していないのにいきなり出てきましたが、これは自身のゲームオブジェクトにgameObjectという名前が既定で用意されているからです。<br>
+			「transform」も今思えば定義されていないものだったのに、ということに気付くでしょう。<br>
+			<br>
+			これで「ボールがブロックに衝突したらブロックが消える」という処理になります。<br>
+			<br>
+
+			<h5>UnityのC#ってどうなの？</h5>	
+			UnityのC#は、既に定義されている型がいきなり出てきたり、いろいろなメソッドがあって、Unityのマニュアルを見ながらでないとなかなか理解できないかと思います。<br>
+			それでもC#自体は理解しやすい言語ですので、一度コツを掴めばどんどん上達するはずです。<br>
+			C#の解説書とUnityの解説書を見ながら学習しましょう。<br>
+			<br>
+			今後もC#のスクリプトが出てきますが、詳しい説明はこれぐらいにしておきます。<br>
+<br>
+
+			
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="gameover"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">ゲームオーバーを実装する</h1>					
+
+			<p class="p-1"></p>
+
+			ボールが下の壁に当たったらゲームオーバーにしましょう。<br>
+<br>
+			
+			<h5>メッセージ表示用のテキストオブジェクトを作成する</h5>			
+			
+			画面に文字を表示したり、プレーヤーが押せるボタンといったUI要素を使用する場合はCanvasを作成します。<br>
+			CanvasはヒエラルキーウインドウのメニューでUI▶Canvasから作成できますが、他のUI要素を作成した場合にも自動生成されます。<br>
+			<br>
+			UI▶Text - TextMeshProを選択して作成してください。名前は「Gameoverclear」にしてください。<br>
+			作成する際に下記のようなメッセージが表示されますが、その場合は「Import TMP Essentials」ボタンをクリックしてからウインドウを閉じてください。<br>
+
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/text-meshpro-warning.jpg" width="100%" alt="text-meshpro警告">
+					</div>
+				</div>
+			</div>
+			<br>
+
+			以下の画像のように、Canvasの子としてTextMeshProゲームオブジェクトが作成されます。<br>
+			また、同時にUIのイベント処理を行うオブジェクト「EventSystem」が自動生成されますが、今回は使用しないので割愛します。<br>
+			<br>
+			Canvasをクリックし、インスペクタウインドウで次のように設定してください。<br>
+			Render Mode: Screen Space – Overlay<br>
+			UI Scale Mode: Screen With Screen Size<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/game-over-clear-canvas.jpg" width="100%" alt="Canvasオブジェクト">
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/game-over-clear-canvas-inspector.jpg" width="100%" alt="Canvasオブジェクトインスペクタ">
+					</div>
+				</div>
+			</div>
+			<br>	
+			Textオブジェクトは次のように設定してください。<br>
+			PosX: 0 PosY: 0 PosZ: 0<br>
+			Width: 600 Height: 100<br>
+			テキスト: Game ####<br>
+			Font Size: 40<br>
+			Alignment: 横中央寄せ、縦中央寄せ<br>
+			<br>
+			テキストは半角英数字にしてください。日本語（全角）は文字化けしてしまいます。<br>
+			日本語を使いたい場合は少しだけ作業が必要になりますので、ここでは割愛します。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/game-over-clear-text.jpg" width="100%" alt="TextMeshProオブジェクト">
+					</div>
+				</div>
+			</div>
+			<br>		
+
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/game-over-clear-text-inspector.jpg" width="100%" alt="TextMeshProオブジェクトインスペクタ">
+					</div>
+				</div>
+			</div>
+			<br>			
+			
+			さて、ここでSceneタブにしている場合、テキストが表示されなかったのではないでしょうか。<br>
+			Gameタブにすると壁の中央に表示されます。<br>
+			Gameタブに表示されている状態が本来の位置なのです。<br>
+			なぜこうなってしまうかというと、通常のオブジェクトとテキストのオブジェクトの座標の考え方が違うからです。<br>
+			違う座標空間にあると覚えて置いてください。<br>
+			位置の数字も全く異なります。<br>
+			例えば、壁の右側は(7, 0, 0)に配置しましたが、テキストの左端をそこに合わせる場合、テキストは(235, 0, 0)あたりになります。<br>
+			Sceneタブでテキストが見えていなくてもちゃんとありますのでご安心ください。<br>
+			<br>
+			なお、フォントサイズがRect TransformのWidthとHeightの値に比べて大きい場合には文字が表示されないので注意しましょう。<br>
+			<br>
+
+			<h5>メッセージ表示用のテキストは見えないようにしておく</h5>
+			ゲームオーバーもクリアも、そうなったときだけメッセージを表示したいので、最初はメッセージが見えないようにしておきます。<br>
+			次のスクリプト「ResetText」を作成し、オブジェクト「Gameoverclear」にアタッチしてください。<br>
+<br>
+			
+
+<div class="code-toolbar"><pre data-label="ResetText" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token comment">// TextMeshProを使う場合に必要</span>
+<span class="token keyword">using</span> <span class="token namespace">TMPro</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ResetText</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// アクセスは1回きりなので、フィールド変数を用意しなくてもいい</span>
+		<span class="token class-name">TextMeshProUGUI</span> myText <span class="token operator">=</span> <span class="token generic-method"><span class="token function">GetComponent</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>TextMeshProUGUI<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token comment">// textに空の文字列を設定する</span>
+		myText<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>ResetText</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+
+			<br>
+
+			<h5>ボールが下の壁に当たったらゲームオーバーにする</h5>
+			ボールが下の壁に当たったらゲームオーバーにしましょう。<br>
+			次のスクリプト「Gameover」を作成し、オブジェクト「Wall Bottom」にアタッチしてください。<br>
+<br>
+
+<div class="code-toolbar"><pre data-label="GameOver" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token comment">// TextMeshProを使う場合に必要</span>
+<span class="token keyword">using</span> <span class="token namespace">TMPro</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">GameOver</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+
+	<span class="token comment">// publicにしてInspectorから設定できるようにする</span>
+	<span class="token keyword">public</span> <span class="token class-name">TextMeshProUGUI</span> gameOverMessage<span class="token punctuation">;</span>
+
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnCollisionEnter</span><span class="token punctuation">(</span><span class="token class-name">Collision</span> collision<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// Game Overと表示する</span>
+		gameOverMessage<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Game Over"</span><span class="token punctuation">;</span>
+
+		<span class="token comment">// 衝突した相手（ボール）を削除する</span>
+		<span class="token function">Destroy</span><span class="token punctuation">(</span>collision<span class="token punctuation">.</span>gameObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>						
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>GameOver</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+<br>
+			
+			GameOverスクリプトがアタッチされているゲームオブジェクトはTextMeshProゲームオブジェクトとは異なるため、今までのようにアクセスすることができません。<br>
+			異なるゲームオブジェクトにアタッチされているコンポーネントにアクセスする方法はいくつかありますが、今回はpublic変数を用意してゲームオブジェクト「Wall Bottom」のインスペクターウインドウで指定することにします。<br>
+			TextMeshProゲームオブジェクト「Gameoverclear」をゲームオブジェクト「Wall Bottom」の「Game Over Message」のところにアタッチするか、「Game Over Message」の右横にある丸印をクリックして、「Gameoverclear」を選択してください。<br>
+			これを忘れるとエラーが起こって、ゲームオーバーになった瞬間に文字を出せずに止まってしまいます。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/game-over-script.jpg" width="100%" alt="Game OverスクリプトをWall Bottomにアタッチ">
+					</div>
+				</div>
+			</div>
+			<br>		
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/game-over-script-detail.jpg" width="100%" alt="Game Overスクリプトアタッチ詳細">
+					</div>
+				</div>
+			</div>
+			<br>		
+			
+				
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="gameclear"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">ゲームクリアを実装する</h1>					
+
+			<p class="p-1"></p>
+
+			ブロックが全部消えたらゲームクリアにしましょう。<br>
+<br>
+			
+			<h5>ゲームクリア用のスクリプトを作成してBlocksにアタッチ</h5>	
+			下記のスクリプトを作成し、名前は「GameClear」にしてください<br>
+<br>
+
+<div class="code-toolbar"><pre data-label="GameClear" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token comment">// TextMeshProを使う場合に必要</span>
+<span class="token keyword">using</span> <span class="token namespace">TMPro</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">GameClear</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+	<span class="token class-name">Transform</span> myTransform<span class="token punctuation">;</span>
+
+	<span class="token comment">// publicにしてInspectorから設定できるようにする</span>
+	<span class="token keyword">public</span> <span class="token class-name">TextMeshProUGUI</span> gameClearMessage<span class="token punctuation">;</span>
+
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// Transformコンポーネントを保持しておく</span>
+		myTransform <span class="token operator">=</span> transform<span class="token punctuation">;</span>
+
+	<span class="token punctuation">}</span>
+
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// 子供がいなくなったらゲームを停止する</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>myTransform<span class="token punctuation">.</span>childCount <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+
+			<span class="token comment">// Game Clearと表示する</span>
+			gameClearMessage<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Game Clear"</span><span class="token punctuation">;</span>
+
+			<span class="token comment">// 時間を0にしてゲームを停止する</span>
+			Time<span class="token punctuation">.</span>timeScale <span class="token operator">=</span> <span class="token number">0f</span><span class="token punctuation">;</span>
+
+		<span class="token punctuation">}</span>
+
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>GameClear</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+
+			<br>
+			子供のゲームオブジェクトの数を調べるには、TransformコンポーネントのchildCountを使用します。<br>
+			Transformコンポーネントに何度もアクセスするため、Startメソッドで変数に保持（キャッシュ）しておきます。<br>
+<br>
+			「ブロックが全て無くなった」＝「子供のゲームオブジェクトの数が0になった」となりますので、Updateメソッド内で子供のゲームオブジェクトの数をチェックして0の時にクリアの処理を行います。<br>
+<br>
+			今回はクリア時に「ゲームを停止する」ということなので、ゲーム内時間を設定するTime.timeScaleの値を変更することにします。<br>
+			Time.timeScaleは動画の再生速度を考えるとわかりやすいと思います。<br>
+			つまり、1の場合には通常と同じ速さでゲームが進み、1より大きい場合には早送りのようになります。2にすれば2倍速に、1より小さくすればスロー再生ということですね。<br>
+			初期状態では1になっています。<br>
+			クリア時には0にしてゲームを停止します。これで、ブロックを全て壊した際にゲームがストップするはずです。<br>
+			<br>
+			ゲームがストップしても、なぜかプレーヤーは動かすことができますよね？<br>
+			これはTime.timeScaleが0になってもUpdateメソッドだけは実行されるからです。<br>
+			これも止めたい場合はまた別の方法を考えることになりますが、今回は割愛します。<br>
+<br>
+			それではGameClearスクリプトをゲームオブジェクト「Blocks」にアタッチしましょう。<br>
+			Blocksはブロックがいっぱいあるオブジェクトの親になっているものです。<br>
+			個々のゲームオブジェクト「Block」にアタッチしないように注意しましょう。<br>
+<br>
+		
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-12">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/game-clear-script.jpg" width="100%" alt="Game ClearスクリプトをBlocksにアタッチ">
+					</div>
+				</div>
+			</div>
+			<br>			
+			
+			<h5>実行してみる</h5>		
+			
+			では実際にどのような動きになるか、実行してみましょう。<br>
+			実行ボタン「▶」を押してゲームを楽しんでください。<br>
+			適当なところでストップボタン「■」を押して止めてください。<br>
+			<br>
+			これでゲームクリアからゲームオーバーまで、全て完成しました。<br>
+			ゲームとしては一通り完成したということになります。<br>
+			これから先はもう少しゲームとして完成度を高めていきましょう。<br>
+<br>
+
+				
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="retry"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">再プレイを実装する</h1>					
+
+			<p class="p-1"></p>
+
+			現在のままだと、ゲームが終わったら画面がそのまま停止した状態になってしまいます。<br>
+			もう一度ゲームをしたい場合、アプリを終了して立ち上げ直す必要がでてきますので不便です。<br>
+			そこで、スペースキーを押したらもう一度ゲームができるように修正しましょう。<br>
+<br>
+			
+			<h5>ゲームオーバーからの再プレイを実装する</h5>
+			
+			再プレイできるように、GameOverスクリプトを修正しましょう。<br>
+<br>
+			
+<div class="code-toolbar"><pre data-label="GameOver" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token comment">// TextMeshProを使う場合に必要</span>
+<span class="token keyword">using</span> <span class="token namespace">TMPro</span><span class="token punctuation">;</span>
+
+<span class="token comment">// シーンを使う場合に必要</span>
+<span class="token keyword">using</span> <span class="token namespace">UnityEngine<span class="token punctuation">.</span>SceneManagement</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">GameOver</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+
+	<span class="token comment">// publicにしてInspectorから設定できるようにする</span>
+	<span class="token keyword">public</span> <span class="token class-name">TextMeshProUGUI</span> gameOverMessage<span class="token punctuation">;</span>
+
+	<span class="token comment">// ゲームオーバーしたかどうかを判断するための変数</span>
+	<span class="token class-name"><span class="token keyword">bool</span></span> isGameOver <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// ゲームオーバーになっている、かつ、Submitボタンを押したら実行する</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>isGameOver <span class="token operator">&amp;&amp;</span> Input<span class="token punctuation">.</span><span class="token function">GetButtonDown</span><span class="token punctuation">(</span><span class="token string">"Submit"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+
+			<span class="token comment">// シーン「MainScene」をロードする</span>
+			SceneManager<span class="token punctuation">.</span><span class="token function">LoadScene</span><span class="token punctuation">(</span><span class="token string">"MainScene"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token punctuation">}</span>
+
+	<span class="token punctuation">}</span>
+
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">OnCollisionEnter</span><span class="token punctuation">(</span><span class="token class-name">Collision</span> collision<span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// Game Overと表示する</span>
+		gameOverMessage<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Game Over"</span><span class="token punctuation">;</span>
+
+		<span class="token comment">// 衝突した相手（ボール）を削除する</span>
+		<span class="token function">Destroy</span><span class="token punctuation">(</span>collision<span class="token punctuation">.</span>gameObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token comment">// isGameOverをtrueにする（フラグを立てる）</span>
+		isGameOver <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>GameOver</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+			<br>		
+			
+			「bool isGameOver = false;」で、isGameOver変数を定義しています。<br>
+			boolというのはtrue(真)とfalse（偽)という2つの値を持つ型です。<br>
+			よく状態変化（フラグを立てる）などのときに使われるので覚えておいてください。<br>
+			今回の場合はisGameOverがtrueの場合はゲームオーバーでゲームが停止しているとみなし、falseの場合はゲームが続いているとみなすことにします。<br>
+<br>
+			Updateメソッドの中で、「if (isGameOver &amp;&amp; Input.GetButtonDown("Submit"))」とありますが、こちらは「ゲームオーバーになった状態で、Submitボタン（スペースキーなど）が押されたら」という意味になります。<br>
+			実は「(isGameOver == true) &amp;&amp; Input.G・・・」と同じ意味で、trueのときは「== true」を省略していいという暗黙のルールがあるためにこう記述することができます。<br>
+			「Input.GetButtonDown("Submit") == true」の「== true」も省略されていることに気付きますね。<br>
+<br>
+			「SceneManager.LoadScene("MainScene");」は、「シーン"MainScene"をロードする」という意味です。<br>
+			これで完全に最初からやり直しということになります。<br>
+			<br>
+			そして衝突メソッドの中に「isGameOver = true;」があります。<br>
+			ゲームオーバーになったときにisGameOver変数をtrueにするということです。<br>
+			これで、さきほどの「if (isGameOver &amp;&amp; Input.・・・」のisGameOver部分が有効になることになります。<br>
+
+<br>
+			<h5>ビルドマネージャーにシーンを登録する</h5>
+			
+			Build Profileに登録していないシーンをロードしようとするとエラーが起きるので、シーン「MainScene」を登録しましょう。<br>
+			メニューのFile▶Build Profilesを選択して設定画面を表示してください。<br>
+			タブの「Scene List」をクリックし、「Add Open Scenes」ボタンをクリックします。<br>
+			すると「Scenes/MainScene」が追加されますので、「Scenes/MainScene」のみをチェックした状態にしてください。<br>
+<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/scene-add1.jpg" width="100%" alt="ビルドマネージャーにシーンを登録">
+					</div>
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/scene-add2.jpg" width="100%" alt="ビルドマネージャーにシーンを登録">
+					</div>
+				</div>
+			</div>
+			<br>	
+			
+			<h5>ゲームクリアからの再プレイを実装する</h5>
+			
+			今度はゲームクリアから再プレイできるように、GameClearスクリプトを修正しましょう。<br>
+<br>
+			
+<div class="code-toolbar"><pre data-label="GameClear" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
+
+<span class="token comment">// TextMeshProを使う場合に必要</span>
+<span class="token keyword">using</span> <span class="token namespace">TMPro</span><span class="token punctuation">;</span>
+
+<span class="token comment">// シーンを使う場合に必要</span>
+<span class="token keyword">using</span> <span class="token namespace">UnityEngine<span class="token punctuation">.</span>SceneManagement</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">GameClear</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">MonoBehaviour</span></span>
+<span class="token punctuation">{</span>
+	<span class="token class-name">Transform</span> myTransform<span class="token punctuation">;</span>
+
+	<span class="token comment">// publicにしてInspectorから設定できるようにする</span>
+	<span class="token keyword">public</span> <span class="token class-name">TextMeshProUGUI</span> gameClearMessage<span class="token punctuation">;</span>
+
+	<span class="token comment">// ゲームクリアしたかどうかを判断するための変数</span>
+	<span class="token class-name"><span class="token keyword">bool</span></span> isGameClear <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// Transformコンポーネントを保持しておく</span>
+		myTransform <span class="token operator">=</span> transform<span class="token punctuation">;</span>
+
+	<span class="token punctuation">}</span>
+
+	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">{</span>
+
+		<span class="token comment">// 子供がいなくなったらゲームを停止する</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>myTransform<span class="token punctuation">.</span>childCount <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+
+			<span class="token comment">// Game Clearと表示する</span>
+			gameClearMessage<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Game Clear"</span><span class="token punctuation">;</span>
+
+			<span class="token comment">// 時間を0にしてゲームを停止する</span>
+			Time<span class="token punctuation">.</span>timeScale <span class="token operator">=</span> <span class="token number">0f</span><span class="token punctuation">;</span>
+
+			<span class="token comment">// ゲームクリアのフラグを立てる</span>
+			isGameClear <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+		<span class="token punctuation">}</span>
+
+		<span class="token comment">// ゲームクリアしている、かつ、Submitボタンを押したら実行する</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>isGameClear <span class="token operator">&amp;&amp;</span> Input<span class="token punctuation">.</span><span class="token function">GetButtonDown</span><span class="token punctuation">(</span><span class="token string">"Submit"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+		<span class="token punctuation">{</span>
+
+			<span class="token comment">// timeScaleを1に戻す</span>
+			Time<span class="token punctuation">.</span>timeScale <span class="token operator">=</span> <span class="token number">1f</span><span class="token punctuation">;</span>
+
+			<span class="token comment">// シーン「MainScene」をロードする</span>
+			SceneManager<span class="token punctuation">.</span><span class="token function">LoadScene</span><span class="token punctuation">(</span><span class="token string">"MainScene"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token punctuation">}</span>
+
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>GameClear</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div>
+			<br>				
+			
+			ゲームオーバーと同様にフラグ(isGameClear)を用意して、フラグが立ったら（isGameClearがtrueになったら）ゲームクリアとします。<br>
+			ゲームオーバーと同様、Submitボタンを押したらシーンが再読込されてゲームが再開されます。<br>
+			このとき、timeScaleを1に戻すのを忘れないでください。<br>
+			これを忘れるとゲームの時が止まったままになります。<br>
+
+							
+<a name="build"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">ビルドする</h1>					
+
+			<p class="p-1"></p>
+
+			ゲームは完成しましたが、Unityの開発環境がなければゲームを楽しむことができません。<br>
+			これを他の環境用に作成することをビルドと言います。<br>
+			ゲームをビルドすることでパソコン、Webブラウザ、スマホでゲームを遊ぶことができるようになります。<br>
+			ここではPC用、Webブラウザ用、Android用のビルドを解説します。<br>
+			<br>
+			
+			<h5>プラットフォームモジュールを加える</h5>
+			Unityでは様々な動作環境用にゲームを作ることが可能です。<br>
+			動作環境のことをプラットフォームと呼びます。<br>
+<br>
+			プラットフォームはUnityインストール時に選択してインストールしますが、後で加えることも可能です。<br>
+			Unity Hubでエディタ毎に管理されています。<br>
+			下記はWeb用のモジュール「WebGL」を追加する方法です。<br>
+			すぐに「このアプリがデバイスに変更を加えることを許可しますか？」という警告メッセージが出ますので、そこは「はい」と答えてください。<br>
+			容量が大きくてまあまあの時間がかかりますので、しばらくお待ちください。<br>
+			もしUnityの開発画面が立ち上がっていたら、いったん終了して再度起動させてください。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/unity-hub-add-module1.jpg" width="100%" alt="プラットフォームモジュールを加える">
+					</div>
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/unity-hub-add-module2.jpg" width="100%" alt="WebGLモジュールを加える">
+					</div>
+				</div>
+			</div>
+			<br>
+			
+			<h5>プラットフォームを変更する</h5>
+			プラットフォームの変更はBuild Profilesにて行います。<br>
+			File▶Build Profilesを選択し、対象となるプラットフォームを選択してSwitch Platformを押せばプラットフォームを変更できます。<br>
+			目的のプラットフォームが表示されていない場には、前述のようにUnity Hubから追加のプラットフォームモジュールをインストールしてください。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/build-switch-plathome.jpg" width="100%" alt="プラットフォームを変更する">
+					</div>
+				</div>
+			</div>
+			<br>
+			
+			<h5>Windows用にビルドする</h5>
+
+			まずはWindows用にビルドして実行してみましょう。<br>
+			プラットフォームはWindowsを選択してください。<br>
+			緑の「Active」が追加されるはずです。<br>
+			<br>
+			「Build And Run」ボタンを押すとビルド後にすぐ実行されます。<br>
+			「Build」ボタンはビルドのみです。<br>
+			<br>
+			どちらかを押せば、フォルダを選択する画面になります。<br>
+			初めてビルドする場合はフォルダが作成されていませんので、「Build」等の名前でフォルダを作成し、それを選択してください。<br>
+			他のプラットフォームにも作成したい場合は、さらにBuildの下に「Windows」等のフォルダを作成して、それを選択しましょう。<br>
+			「Build」ボタンはビルドのみですので、実行したい場合はBuildフォルダを開いて実行ファイル（今回の場合は「breakout-sample.exe」）を実行してください。<br>
+			<br>
+			デフォルトだと全画面表示で表示されると思います。<br>
+			今回のゲームでは終了する機能を作成していないので、終了する場合は強制終了することになります。<br>
+			Windowsの場合はAlt+F4で閉じたり、タスクマネージャーからプロセスを終了させます。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/scene-add3.jpg" width="100%" alt="ビルドする">
+					</div>
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/build-folder-create.jpg" width="100%" alt="ビルド用のフォルダを作成">
+					</div>
+				</div>
+			</div>
+			<br>		
+			なお、Windows等で他人に渡す場合はビルドしたフォルダーの中身を全て渡してください。<br>
+			実行ファイル（今回の場合は「breakout-sample.exe」）のみでは動かないので注意してください。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/build-folder-contents.jpg" width="100%" alt="ビルドしたフォルダの中身">
+					</div>
+				</div>
+			</div>
+			<br>	
+
+
+			<h5>Web用にビルドする</h5>
+			ブラウザで遊べるように、Web用にビルドしてみましょう。<br>
+			プラットフォームはWebを選択してください。<br>
+			緑の「Active」が追加されるはずです。<br>		
+			初めて実行した時は下記のようなメッセージが出てくるので、Applyを押すとUnityエディターが自動的に再起動されます。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/build-webgl-warning1.jpg" width="100%" alt="Web用ビルド時の警告">
+					</div>
+				</div>
+			</div>
+			<br>
+			Webの場合は解像度を決めておく必要があります。<br>
+			Playerタブをクリックし、「Resolution and Presentation」の項目をクリックして中身を表示させてください。<br>
+			デフォルトの状態で960x600になっていますので、お試しする分には変更の必要がありませんが、ここを変えることでブラウザ上でのサイズを変更できます。<br>
+			また、会社名、商品名、バージョン番号などもここで変更することができます。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-6">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/build-project-settings-player.jpg" width="100%" alt="Web用プレーヤー設定">
+					</div>
+				</div>
+			</div>
+			<br>
+			さきほどWindows用にビルドしましたが、Web用の場合はBuildフォルダの中にさらに「Web」などの名前でフォルダを作って、それを選択してください。<br>
+			Web用はかなりビルドに時間がかかるので、余裕があるときにやった方がいいかもしれません。<br>
+			<br>
+			また、ビルドが完了したときに次のようなメッセージが表示されることがありますが、「許可」を押してください。<br>
+			<br>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-5">
+						<img src="./ブロック崩しでUnity入門 _ 株式会社パワーネット(PowerNet)_files/build-webgl-warning2.jpg" width="100%" alt="Web用ビルド時の警告">
+					</div>
+				</div>
+			</div>
+			<br>
+			生成されたindex.htmlの記載内容を参考にwebサーバにアップロードすれば、ブラウザゲームとして公開可能です。<br>
+			<br>						
+			
+			<!-- ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ -->
+<a name="summary"></a>
+			<p class="p-1"></p>		
+
+			<h1 class="contents_title2 mb-3">まとめ</h1>					
+
+			<p class="p-1"></p>			
+			
+			ここまでで、やっと1本のゲームができました。<br>
+			大変お疲れさまでした。<br>
+			<br>
+			これでもUnityの初歩の初歩ですし、ゲームとしての完成度もまだ足りないと思います。<br>
+			ゲームとしては効果音を付けたり、1回でゲームオーバーにならないようにプレーヤーの数を増やしたり、点数を付けたりしたくなるはずです。<br>
+			また、スマホ用としてビルドする場合は、プレーヤーが移動するときの入力方法を変えなければいけません。<br>
+			さらに、今回開発したものには、ボールが水平や垂直に飛んだりするバグがあって、ゲームが永久に終わらなくなることがあります。<br>
+			これを修正しないとゲームとしてはリリースできませんね。<br>
+			こちらに関してはまた別の機会に解説したいと思います。<br><br>
+			もちろん自分で本や参考サイトなどを見て勉強しながらやると一番身につくと思いますので、おもしろそうだなと思ったらぜひ挑戦してみてください。<br>
+<br>
+			長時間のお付き合い、ありがとうございました。<br>
+			少しでもみなさんのUnityへの関心が高まったのなら筆者としても嬉しいです。<br>
+			<br>
+			<br>
+			【参考文献】<br>
+			<a href="https://hu-gsd.com/lecture/unity-block-1/">Unity初心者向けチュートリアル ブロック崩しの作り方</a>
+				<!-- InstanceEndEditable -->
+			</div>
+		</div>
+		<br>
+
+	</div>
+
+  
+
+</body><!-- InstanceEnd --></html>

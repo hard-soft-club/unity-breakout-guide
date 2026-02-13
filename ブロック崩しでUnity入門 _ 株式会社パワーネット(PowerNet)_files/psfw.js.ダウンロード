@@ -1,0 +1,202 @@
+﻿// JavaScript Document
+
+/*
+============================================================
+POWERNET Spam Firewall (psfw.js)
+Version 1.0.0
+Last Update 2020/5/13
+
+Copyright(c) since 2020 POWERNET Inc.
+https://powernet.jp
+============================================================
+*/
+
+//
+// セッション開始 ※通常はpsfw_count関数から呼ばれる
+//
+function psfw_start() {
+
+	sessionStorage.clear();
+	sessionStorage.setItem("psfw_count", 0);
+	sessionStorage.setItem("psfw_start_time", new Date().getTime());
+	sessionStorage.setItem("psfw_last_time", new Date().getTime());
+	sessionStorage.setItem("psfw_staytime", 0);
+	sessionStorage.setItem("psfw_flag", 0);
+
+	// 閲覧必須・無視するページのURL(他と重複しなければURLの一部でも可)。カンマ区切りで複数指定できる。無い場合は空欄。
+	// 無視するページは主にpsfw_result関数を設置するページ等。
+	/*
+	・例
+	"https://example.com/index.html"
+	"about/index.html,demo/example/customer.html"
+	"inquiry.html"
+	*/
+	// 【カスタマイズ [customize]】
+	// 閲覧必須のURL
+	sessionStorage.setItem("psfw_required_url", "");
+	// 無視するURL
+	sessionStorage.setItem("psfw_ignore_url", "inquiry/index.html");
+	
+}
+
+//
+// リセットする
+//
+function psfw_reset() {
+	sessionStorage.clear();
+}
+
+
+//
+// カウント関数
+//
+function psfw_count(force_reset_flag) {
+
+	var i, ignore_url, flag, count, last_time, now_time, difftime;
+
+	if ((force_reset_flag == true) || (sessionStorage.getItem("psfw_count") == null)) {
+
+		// 強制リセットか、セッションが定義されていない場合は初期化する
+		psfw_start();
+
+	}
+		
+	// 無視するページに該当する場合はカウントしない
+	ignore_url = sessionStorage.getItem("psfw_ignore_url");
+	if (ignore_url) {
+
+		var ignore_url_array = ignore_url.split(",");
+
+		for(i = 0; i < ignore_url_array.length; i++) {
+
+			if (location.href.indexOf(ignore_url_array[i]) !== -1) {
+
+				// 文字列の一部が無視ページURLの中に見つかったのでカウントしない
+				console.log("無視ページへのアクセスを発見: " + ignore_url_array[i] + "\n");
+				return;
+
+			}
+
+		}
+
+	}
+
+	count = Number(sessionStorage.getItem("psfw_count"));
+	
+	// アクセスページの最大格納数
+	// 【カスタマイズ [customize]】
+	if (count > 50) return;
+
+	flag = true;
+	for(i = 0; i < count; i++) {
+		if (sessionStorage.getItem("psfw_page" + i) == location.href) {
+			flag = false;
+			break;
+		}
+	}
+	if (flag == true) {
+		// 初回アクセスのページの場合、アクセスページ数を増加させ、URLを保存
+		sessionStorage.setItem("psfw_page" + count, location.href);
+		sessionStorage.setItem("psfw_count", count + 1);	
+	}
+
+	// ページ遷移の時間を保存
+	last_time = sessionStorage.getItem("psfw_last_time");
+	now_time = new Date().getTime();
+	difftime = (now_time - last_time) / 1000;
+
+	sessionStorage.setItem("psfw_staytime", Number(sessionStorage.getItem("psfw_staytime")) + difftime);
+	sessionStorage.setItem("psfw_last_time", now_time);
+	
+}
+
+
+//
+// 結果取得関数
+//
+function psfw_result() {
+
+	var i, j, debug_str, count, last_time, now_time, staytime, staytime_now, h, m, s, staytime_str, required_url, required_url_flag;
+	
+	debug_str = "";
+	
+	count = sessionStorage.getItem("psfw_count");
+	if (count == null) {
+		psfw_start();
+		return;
+	}
+	debug_str += "count: " + count + "\n";
+
+	// 閲覧必須のページのチェック
+	required_url = sessionStorage.getItem("psfw_required_url");
+	if (!required_url) {
+		
+		required_url_flag = true;
+		debug_str += "閲覧必須ページ: 未定義\n";
+	
+	} else {
+
+		required_url_flag = false;
+		var required_url_array = required_url.split(",");
+
+		for(i = 0; i < count; i++) {
+
+			for(j = 0; j < required_url_array.length; j++) {
+
+				if (sessionStorage.getItem("psfw_page" + i).indexOf(required_url_array[j]) !== -1) {
+
+					// 文字列の一部がアクセスページURLの中に見つかったのでOK
+					required_url_flag = true;
+					debug_str += "閲覧必須ページへのアクセスを発見: " + required_url_array[j] + "\n";
+					break;
+
+				}
+
+			}
+
+		}
+		
+		if (required_url_flag == false) {
+			debug_str += "閲覧必須ページへのアクセスはまだありません\n";
+		}
+
+	}
+
+	for(i = 0; i < count; i++) {
+		debug_str += sessionStorage.getItem("psfw_page" + i) + "\n";
+	}
+	
+	last_time = sessionStorage.getItem("psfw_last_time");
+	now_time = new Date().getTime();
+
+	staytime = sessionStorage.getItem("psfw_staytime");	
+	staytime_now = (now_time - last_time) / 1000;
+
+	// 現在のページ滞在時間も含む場合に有効にする
+	// 【カスタマイズ [customize]】
+	// staytime += staytime_now;
+
+	h = Math.floor(staytime / 3600);
+	m = Math.floor((staytime - h * 3600) / 60);
+	s = Math.round(staytime - h * 3600 - m * 60);
+	staytime_str = h + "時間" + m + "分" + s + "秒";
+	debug_str += "staytime: " + staytime + "秒" + "(" + staytime_str + ")" + "\n"; 
+
+	debug_str += "staytime_now: " + staytime_now + "\n";
+	debug_str += "last_time: " + Date(last_time) + "\n";
+
+	// アクセスページ数: 3、滞在時間: 3分間以上の場合はOK、それ以外はNGとする
+	// 【カスタマイズ [customize]】
+	if ((count >= 3) && (staytime > 3 * 60) && (required_url_flag == true)) {
+		debug_str += "結果: OK";
+		sessionStorage.setItem("psfw_flag", 1);
+	} else {
+		debug_str += "結果: NG";
+		sessionStorage.setItem("psfw_flag", 0);
+	}
+	
+	// デバッグする場合は下記を有効にする
+	// 【カスタマイズ [customize]】
+	console.log(debug_str);
+
+}
