@@ -862,9 +862,10 @@
 			<br>
 			
 <pre><h6 class="prog">public float speed = 5.0f;</h6></pre>
-			概要としてボールのスピードを表す変数を宣言しています。publicやらfloatやら色々とついていますね、詳細を語ります。
+			概要としてボールのスピードを表す変数を宣言しています。publicやらfloatやら色々とついていますね、詳細を語ります。<br>
 			・public：c#側とunity側で二つの異なる意味を持ちます。前者はspeed変数を他のクラス(ここでは他のスクリプト)から参照可能にするという意味を持ち、<br>
-			後者ではunityのgui経由でspeed変数の値を変更できるようにすると言う意味を持ちます。今回は後者の意味を目的として書いています。
+			後者ではunityのgui経由でspeed変数の値を変更できるようにすると言う意味を持ちます。<br>
+			今回はunityのインスペクターで自由にいじりたいので後者の意味を目的としています。<br>
 			・float：小数(※32bitの長さ)しか入らない変数であることを示しています。<br>
 			C#には他にint（整数型）、string(文字列型)、floatの高精度版であるdouble（※64bitの長さ）等があります。<br>
 			特に、Unityでは小数を多く使いますので、floatは目にする機会が多いかと思います。<br>
@@ -873,18 +874,18 @@
 			・なお、publicと相対する「private」というのもあって、これを付けると他のスクリプトからは参照できなくなる上、<br>		
 			unityのgui経由で変数の値をいじれなくできます。使い分けると便利です。<br><br>
 <pre><h6 class="prog">Rigidbody myRigidbody;</h6></pre>
-			物理演算をつかさどるRigidbodyコンポーネントの参照を持つための変数を宣言しています。<br>
-			位置をつかさどるTransformコンポーネントの参照を持つための変数が欲しければ左のRigidbodyをTransformにします。<br>
+			・物理演算をつかさどるRigidbodyコンポーネントの参照を持つための変数を宣言しています。<br>
+			・もし、位置をつかさどるTransformコンポーネントの参照が入る変数が欲しければ左のRigidbodyをTransformにします。<br>
 
 <pre><h6 class="prog">void Start() {}</h6></pre>
-			実行開始時にunityによって、一度だけ呼ばれるメソッドです。<br>
-			メソッドは関数と呼ばれたりもします。どっちの呼び名でも良いです。<br>
-			初期値を決める等、初期化系の処理を書く事が多いです。<br>
-			なお、unityによって自動で呼ばれる関数の総称をイベント関数と言います。<br><br>
+			・実行開始時にunityによって、一度だけ呼ばれるメソッドです。<br>
+			・この様にunityによって自動で呼ばれる関数の総称をイベント関数と言います。<br>
+			・初期値を決める等、初期化系の処理を書く事が多いです。<br>
+			※メソッドは関数と呼ばれたりもします。意味は同じです。<br>
 
 		
 <pre><h6 class="prog">myRigidbody = GetComponent&lt;Rigidbody&gt;();</h6></pre>		
-			Rigidbodyの参照を持つための変数myRigidbodyに実際にくっついているRigidbodyの参照を突っ込んでいます。<br>
+			・Rigidbodyの参照を入れる変数、myRigidbodyに実際にくっついているRigidbodyの参照を突っ込んでいます。<br>
 			このRigidbodyに対して色々とコードで操作することで物理演算を考慮した移動を実現させていきます。<br>
 <pre><h6 class="prog">myRigidbody.velocity = new Vector3(speed, speed, 0f);</h6></pre>		
 			3次元の値は「Vector3(Xの値, Yの値, Zの値)」という表現の仕方をします。<br>
