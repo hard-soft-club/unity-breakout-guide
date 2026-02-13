@@ -768,8 +768,9 @@
 
 			<h5>ブロックを消すスクリプトをアタッチする</h5>				
 			Scriptsフォルダの中でC# Scriptを作ります（もう手順はお分かりですよね？）。名前は「Block」にしてください。<br>
-			そして、スクリプト「Block」をオブジェクト「Blocks」にアタッチします。<br>
-			ブロックがいっぱいありますが、それらをとりまとめている「Blocks」だけにアタッチするので気をつけてください。<br>
+			そして、スクリプト「Block」をプレハブ「Block」にアタッチします。<br>
+			ヒエラルキーにブロックが十個もありますが、それら一つ一つにアタッチするのではなく、プレハブな「Block」だけに<br>
+			アタッチするので気をつけてください。<br>
 			コードは次のようになります<br>
 			
 <div class="code-toolbar"><pre data-label="Block" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
