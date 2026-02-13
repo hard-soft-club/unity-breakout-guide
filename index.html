@@ -487,7 +487,7 @@
 			ボールを動かすには主に2つの方法があります。<br>
 			一つ目は座標をつかさどるtransformを直接いじって動かす方法、二つ目がUnityの大きな特徴である物理演算を用いて動かす方法です。<br>
 			具体的には重力や壁の当たり判定を考慮した移動が実現できます。今回はボール、つまり、跳ね返ってほしいので、二つ目の方法を採用します。<br>
-			そのためには、物理演算をつかさどる「Rigidbody」コンポートネントと、物理演算のマテリアルである「Physics Material」を使って動かしてみましょう。<br>
+			そのためには、物理演算をつかさどる「Rigidbody」コンポートネントと、それにセットする「Physics Material(物理演算マテリアル)」を二つを用いてみましょう。<br>
 <br>
 			
 			<h5>物理演算コンポーネントを追加する</h5>				
@@ -520,7 +520,7 @@
 						<th nowrap="">Constraints▶Freeze Position</th><td>X,Yは無し、Zにチェック</td><td>位置を固定する場合にチェック。<br>ボールはZ軸に飛んでほしくないのでZは固定。</td>
 					</tr>					
 					<tr>
-						<th nowrap="">Constraints▶Freeze Rotation</th><td>X,Y,Z全てにチェック</td><td>回転を固定する場合にチェック。<br>ボールは回転してほしくないので全固定。</td>
+						<th nowrap="">Constraints▶Freeze Rotation</th><td>X,Y,Z全てのチェックを外す</td><td>回転を固定する場合にチェック。<br>ボールは回転してほしいのでチェックしない。</td>
 					</tr>
 					
 				</tbody>
@@ -537,10 +537,11 @@
 			<br>			
 			
 			
-			<h5>物理演算のマテリアルを追加する</h5>
+			<h5>物理演算マテリアルを追加する</h5>
 			ボールにはもう1つ必要な動作があります。<br>
 			壁、ブロック、プレーヤーと衝突したときの動作です。<br>
-			物理演算のマテリアル「Physics Material」は、他の物体と衝突したときにどのくらい摩擦が生じるか（摩擦係数）、どのくらいの強さで跳ね返るのか（反発係数）を指定するものです。<br>
+			物理演算マテリアル「Physics Material」は、他の物体と衝突したときにどのくらい摩擦が生じるか（摩擦係数）、どのくらいの強さで跳ね返るのか（反発係数）を指定するものです。<br>
+			※色付けをする際に作ったマテリアルと一部分名前が被っているが別物である。<br>
 			プロジェクトウインドウの上で右クリックして、Create▶Physics Materialを選択してください。名前は「Ball Physics Material」にしましょう。<br>
 			数値は下記のようにしてください。<br>
 			<br>
@@ -850,10 +851,11 @@
 
 <pre><h6 class="prog">Using UnityEngine;</h6></pre>
 			Unityではほぼ全てのスクリプトに付くおまじないのような行です。<br>
-			UnityEngineというカタログを使うという意味の行です。<br><br>
+			軽く説明するとUnityEngineというライブラリ(関数やデータが詰まった箱)の中にある物を使うという意味の行です。<br>
 
 <pre><h6 class="prog">class Ball : MonoBehaviour {}</h6></pre>
-			Ballというクラスにしますという宣言です。MonoBehaviourはクラスの継承を意味する指定ですが、特に覚えなくて大丈夫です。<br>
+			Ballというクラスにしますという宣言です。MonoBehaviourはBallクラスの継承元となるクラスです。意味不明だと思いますが、<br>
+			今回のゲーム制作には関係ないので今は気にしなくて良いです。肝心なのはクラスです。<br>
 			クラスはC#でよく使われます。<br>
 			Unityではクラス名とファイル名を同じにするのがルールで、クラスは1ファイルにつき1つしか宣言できません。<br>
 <br>
@@ -875,10 +877,10 @@
 			使い分けると便利です。<br><br>
 
 <pre><h6 class="prog">void Start() {}</h6></pre>
-			実行開始時に一度だけ呼ばれるメソッドです。<br>
-			メソッドは関数と呼ばれたりもします。定義は似たようなものなので、どちらを使っても通じます。<br>
-			初期値を入れたり、何度も呼ばなくていいような処理を書いたりする場所です。<br>
-			なお、これとは別に「Update() {}」というメソッドもあり、そちらは更新されるたびに呼ばれる部分です。後ほど説明します。<br><br>
+			実行開始時にunityによって、一度だけ呼ばれるメソッドです。<br>
+			メソッドは関数と呼ばれたりもします。どっちの呼び名でも良いです。<br>
+			初期値を決める等、初期化系の処理を書く事が多いです。<br>
+			なお、unityによって自動で呼ばれる関数の総称をイベント関数と言います。<br><br>
 
 		
 <pre><h6 class="prog">myRigidbody = GetComponent&lt;Rigidbody&gt;();</h6></pre>		
@@ -955,7 +957,7 @@
 {
 	Destroy(gameObject);
 }</h6></pre>	
-			「void OnCollisionEnter(Collision collision)」のOnCollisionEnterメソッドは、衝突したときに呼ばれます。<br>
+			「void OnCollisionEnter(Collision collision)」のOnCollisionEnterメソッドは、衝突したときに呼ばれるイベント関数です。<br>
 			「ブロックが何かと衝突した場合」となります。<br>
 			今回は衝突してくるのはボールしかありえないので、「ボールが衝突したら」となります。<br>
 			<br>
@@ -964,8 +966,8 @@
 			ちなみに先頭の「void」というのは、「このメソッドは何も値を返しませんよ」という意味です。<br>
 			メソッドによっては値を返すものがあるので、その場合は「int」とか「string」などの型になります。<br>
 			<br>
-			「Destroy(gameObject);」は、「ゲームオブジェクトgameObjectを削除する」の意味で、この場合は「ブロック（自分自身）を削除する」となります。<br>
-			「gameObject」は定義していないのにいきなり出てきましたが、これは自身のゲームオブジェクトにgameObjectという名前が既定で用意されているからです。<br>
+			「Destroy(gameObject);」は、「このスクリプトが付いているゲームオブジェクトを削除する」の意味です。つまり「ブロック（自分自身）を削除する」となります。<br>
+			「gameObject」は定義していないのに出てきましたが、これは前述した。ライブラリ等、現在のファイルから見えない所にgameObjectという名前が用意されているからです。<br>
 			「transform」も今思えば定義されていないものだったのに、ということに気付くでしょう。<br>
 			<br>
 			これで「ボールがブロックに衝突したらブロックが消える」という処理になります。<br>
@@ -1010,7 +1012,7 @@
 			<br>
 
 			以下の画像のように、Canvasの子としてTextMeshProゲームオブジェクトが作成されます。<br>
-			また、同時にUIのイベント処理を行うオブジェクト「EventSystem」が自動生成されますが、今回は使用しないので割愛します。<br>
+			また、同時にUIのイベント処理を行うゲームオブジェクト「EventSystem」が自動生成されますが、今回は使用しないので割愛します。<br>
 			<br>
 			Canvasをクリックし、インスペクタウインドウで次のように設定してください。<br>
 			Render Mode: Screen Space – Overlay<br>
@@ -1063,7 +1065,7 @@
 			さて、ここでSceneタブにしている場合、テキストが表示されなかったのではないでしょうか。<br>
 			Gameタブにすると壁の中央に表示されます。<br>
 			Gameタブに表示されている状態が本来の位置なのです。<br>
-			なぜこうなってしまうかというと、通常のオブジェクトとテキストのオブジェクトの座標の考え方が違うからです。<br>
+			なぜこうなってしまうかというと、通常のゲームオブジェクトとテキストのゲームオブジェクトの座標の考え方が違うからです。<br>
 			違う座標空間にあると覚えて置いてください。<br>
 			位置の数字も全く異なります。<br>
 			例えば、壁の右側は(7, 0, 0)に配置しましたが、テキストの左端をそこに合わせる場合、テキストは(235, 0, 0)あたりになります。<br>
@@ -1088,7 +1090,7 @@
 	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 	<span class="token punctuation">{</span>
 
-		<span class="token comment">// アクセスは1回きりなので、フィールド変数を用意しなくてもいい</span>
+		<span class="token comment">// アクセスは1回きりなので、変数を用意しなくてもいい</span>
 		<span class="token class-name">TextMeshProUGUI</span> myText <span class="token operator">=</span> <span class="token generic-method"><span class="token function">GetComponent</span><span class="token generic class-name"><span class="token punctuation">&lt;</span>TextMeshProUGUI<span class="token punctuation">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 		<span class="token comment">// textに空の文字列を設定する</span>
@@ -1103,7 +1105,7 @@
 
 			<h5>ボールが下の壁に当たったらゲームオーバーにする</h5>
 			ボールが下の壁に当たったらゲームオーバーにしましょう。<br>
-			次のスクリプト「Gameover」を作成し、オブジェクト「Wall Bottom」にアタッチしてください。<br>
+			次のスクリプト「Gameover」を作成し、ゲームオブジェクト「Wall Bottom」にアタッチしてください。<br>
 <br>
 
 <div class="code-toolbar"><pre data-label="GameOver" class="line-numbers language-csharp" tabindex="0"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">UnityEngine</span><span class="token punctuation">;</span>
@@ -1185,7 +1187,7 @@
 	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 	<span class="token punctuation">{</span>
 
-		<span class="token comment">// Transformコンポーネントを保持しておく</span>
+		<span class="token comment">// Transformコンポーネントの参照を入れる箱</span>
 		myTransform <span class="token operator">=</span> transform<span class="token punctuation">;</span>
 
 	<span class="token punctuation">}</span>
@@ -1381,7 +1383,7 @@
 	<span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 	<span class="token punctuation">{</span>
 
-		<span class="token comment">// Transformコンポーネントを保持しておく</span>
+		<span class="token comment">// Transformコンポーネントの参照を入れる箱</span>
 		myTransform <span class="token operator">=</span> transform<span class="token punctuation">;</span>
 
 	<span class="token punctuation">}</span>
@@ -1435,10 +1437,10 @@
 
 			<p class="p-1"></p>
 
-			ゲームは完成しましたが、Unityの開発環境がなければゲームを楽しむことができません。<br>
-			これを他の環境用に作成することをビルドと言います。<br>
-			ゲームをビルドすることでパソコン、Webブラウザ、スマホでゲームを遊ぶことができるようになります。<br>
-			ここではPC用、Webブラウザ用、Android用のビルドを解説します。<br>
+			ゲームは完成しましたが、今の段階ではUnityがなければゲームを楽しむことができません。<br>
+			それは不便ですので、unityなしでも動くようにゲームを出力する事をビルドと言います。<br>
+			ゲームをビルドすることでパソコン、Webブラウザ等でゲームを遊ぶことができるようになります。<br>
+			ここではPC用、Webブラウザ用のビルドを解説します。<br>
 			<br>
 			
 			<h5>プラットフォームモジュールを加える</h5>
